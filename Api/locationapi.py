@@ -11,7 +11,7 @@ class LocationAPI:
 
     def get_location(self, city):
         if not city:
-            raise Exception("City is empty")
+            raise Exception("You didn't select a city!")
         url = f"{self.base_url+city+self.country+self.type+self.format+self.limit+self.apikey}"
         try:
             response = requests.get(url)
