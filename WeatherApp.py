@@ -148,5 +148,5 @@ with col_4:
         for idx, (weather, temp, time, about) in enumerate(data):
             columns1[idx].write(f'# {weather}')  
             columns1[idx].write(f'{temp}' + " °C")    
-            columns1[idx].write(f'{time.strftime("%h")}' if isinstance(time, Timestamp) else time)
+            columns1[idx].write(f'{time.strftime("%H%M")}' if isinstance(time, Timestamp) else time)
             columns1[idx].write(about)
