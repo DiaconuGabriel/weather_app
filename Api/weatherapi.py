@@ -22,7 +22,7 @@ class WeatherAPI:
                 "city": data["name"],
                 "temperature": f'{data["main"]["temp"]}',
                 "weather": f'{data["weather"][0]["description"]}',
-                "sunrise": f'{datetime.fromtimestamp(data["sys"]["sunrise"]).strftime("%hH:%M")}',
+                "sunrise": f'{datetime.fromtimestamp(data["sys"]["sunrise"]).strftime("%H:%M")}',
                 "sunset": f'{datetime.fromtimestamp(data["sys"]["sunset"]).strftime("%H:%M")}',
                 "temperature_min": f'{data["main"]["temp_min"]}',
                 "temperature_max": f'{data["main"]["temp_max"]}',
