@@ -10,6 +10,8 @@ class LocationAPI:
         self.apikey = f"&apiKey={location_api_key}"
 
     def get_location(self, city):
+        if not city:
+            raise Exception("City is empty")
         url = f"{self.base_url+city+self.country+self.type+self.format+self.limit+self.apikey}"
         try:
             response = requests.get(url)
