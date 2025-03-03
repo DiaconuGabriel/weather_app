@@ -71,7 +71,7 @@ with col_data:
         with col_select_city:
             with st.container():
                 try:
-                    selected_city = st.selectbox("Selectec city", cities, index=None)
+                    selected_city = st.selectbox("Select city", cities, index=None)
                     placeholder = st.empty()
                     prompt = placeholder.text_input("Describe yourself",value = st.session_state.prompt)
                     if st.button("Show data"):
