@@ -65,8 +65,6 @@
 }
 
 [data-testid="stVerticalBlockBorderWrapper"] .stMarkdown .text_ai {
-    width: 100%; 
-    height: auto; 
     padding: 20px; 
     background-color: rgba(55, 55, 55, 0.14); 
     border-radius: 15px; 
@@ -75,10 +73,10 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); 
     backdrop-filter: blur(20px); 
     font-size: 18px; 
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif
 }
 
 [data-testid="stMarkdownContainer"] {
     font-size:19px; 
-    
+
 }
