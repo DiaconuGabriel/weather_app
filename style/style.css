@@ -24,6 +24,16 @@
     padding: 0px 0px 17px 0px; 
 }
 
+[data-testid="stSelectbox"] > div{
+    border: 1px solid rgba(255, 254, 254, 0.647);
+    border-radius: 10px;
+}
+
+[data-testid="stTextInput"] > div{
+    border: 1px solid rgba(255, 254, 254, 0.647);
+    border-radius: 10px;
+}
+
 [data-testid="stColumn"]:is(
     :has([data-testid="stMarkdownContainer"] .col_hide_1),
     :has([data-testid="stMarkdownContainer"] .col_hide_2),
@@ -57,26 +67,27 @@
     padding: 27px;
     background-color: rgba(55, 55, 55, 0.14);
     border-radius: 45px;
-    border: 1px solid rgba(255, 254, 254, 0.339);
+    border: 1px solid rgba(255, 254, 254, 0.647);
     color: rgb(255, 255, 255);
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(25px);
     text-align: center
 }
 
-[data-testid="stVerticalBlockBorderWrapper"] .stMarkdown .text_ai {
+.text_ai {
+    border-radius: 40px;
     padding: 20px; 
     background-color: rgba(55, 55, 55, 0.14); 
     border-radius: 15px; 
-    border: 1px solid rgba(255, 254, 254, 0.339); 
+    border: 1px solid rgba(255, 254, 254, 0.647); 
     color: rgb(255, 255, 255); 
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); 
     backdrop-filter: blur(20px); 
     font-size: 18px; 
-    font-family: Arial, sans-serif
+    font-family: Arial, sans-serif;
+    text-align: left
 }
 
 [data-testid="stMarkdownContainer"] {
     font-size:19px; 
-
 }

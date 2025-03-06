@@ -66,12 +66,8 @@ with st.container():
     st.markdown('<div class="title">🌥️ Weather & Air Quality App</div>', unsafe_allow_html=True)
     col_hide_1, col_data, col_air_q, col_hide_2= st.columns([0.1,1,1,0.1], border=True)
 
-
-with col_hide_1:
-    st.markdown('<div class="col_hide_1"></div>', unsafe_allow_html=True)
-
-with col_hide_2:
-    st.markdown('<div class="col_hide_2"></div>', unsafe_allow_html=True)
+col_hide_1.markdown('<div class="col_hide_1"></div>', unsafe_allow_html=True)
+col_hide_2.markdown('<div class="col_hide_2"></div>', unsafe_allow_html=True)
 
 with col_data:
     st.markdown('<div class="col_data"></div>', unsafe_allow_html=True)
@@ -108,11 +104,11 @@ with col_data:
                     text = f'{e}'
                     words = text.split()    
                 
-        with col4:
-            st.markdown('<div class="col4"></div>', unsafe_allow_html=True)
-            col4.write('📍' + oras); col4.write('🌡️ ' + temperatura+ " °C"); col4.write('Weather: ' + vreme); col4.write("☀️: "+sunrise); col4.write("🔴: "+sunset)
+        col4.markdown('<div class="col4"></div>', unsafe_allow_html=True)
+        col4.write('📍' + oras); col4.write('🌡️ ' + temperatura+ " °C"); col4.write('Weather: ' + vreme); col4.write("☀️: "+sunrise); col4.write("🔴: "+sunset)
 
         col_min_max_temp, col_humidity, col_wind_speed = st.columns(3, border=True)
+
         with col_min_max_temp:
             st.markdown('<div class="col_min_max_temp"></div>', unsafe_allow_html=True)
             st.write("Min: " + temperatura_min + "°C"); st.write("Max: " + temperatura_max + "°C")
@@ -122,6 +118,7 @@ with col_data:
         with col_wind_speed:
             st.markdown('<div class="col_wind_speed"></div>', unsafe_allow_html=True)
             st.write("💨 Wind Speed"); st.write(vit_vant+ " km/h") 
+
         col_feels_like, col_cloud_coverage, col_pressure = st.columns(3, border=True)
         with col_feels_like:
             st.markdown('<div class="col_feels_like"></div>', unsafe_allow_html=True)
@@ -135,55 +132,47 @@ with col_data:
 
 with col_air_q:
     st.markdown('<div class="col_air_q"></div>', unsafe_allow_html=True)
-    co_col, no2_col, o3_col, so2_col = st.columns(4, border=True)
 
+    co_col, no2_col, o3_col, so2_col = st.columns(4, border=True)
     with co_col :
         st.markdown('<div class="co_col"></div>', unsafe_allow_html=True)
         co_col.write("CO"); co_col.write(co + " µg/m³")
-
     with no2_col:
         st.markdown('<div class="no2_col"></div>', unsafe_allow_html=True)
         so2_col.write("SO2"); so2_col.write(so2 + " µg/m³")
-
     with o3_col:
         st.markdown('<div class="o3_col"></div>', unsafe_allow_html=True)
         o3_col.write("O3"); o3_col.write(o3 + " µg/m³")
-
     with so2_col:
         st.markdown('<div class="so2_col"></div>', unsafe_allow_html=True)
         no2_col.write("NO2"); no2_col.write(no2 + " µg/m³")
 
     pm10_col, pm25_col, aqi_col = st.columns(3, border=True)
-
     with pm10_col:
         st.markdown('<div class="pm10_col"></div>', unsafe_allow_html=True) 
         pm10_col.write("PM10"); pm10_col.write(pm10 + " µg/m³")
-
     with pm25_col:
         st.markdown('<div class="pm25_col"></div>', unsafe_allow_html=True)
         pm25_col.write("PM25"); pm25_col.write(pm25 + " µg/m³")
   
-        aqi_col.markdown('<div class="aqi_col"></div>', unsafe_allow_html=True)
-        aqi_col.write("Air quality index"); aqi_col.write(air_quality_index)
+    aqi_col.markdown('<div class="aqi_col"></div>', unsafe_allow_html=True)
+    aqi_col.write("Air quality index"); aqi_col.write(air_quality_index)
 
     with st.container():
         st.markdown('<div class="title_ai">🔍 AI Recommendation:</div>', unsafe_allow_html=True)
     
     with st.container():
-        placeholder = st.empty()
-        placeholder.markdown(f'<div class="text_ai">{text}</div>', unsafe_allow_html=True)
-        for word in words:
-            current_text += " " + word if current_text else word 
-            placeholder.text(current_text)  
-            time.sleep(0.035)
+        st.markdown(f'<div class="text_ai">{text}</div>', unsafe_allow_html=True)
+        # placeholder = st.empty()
+        # for word in words:
+        #     current_text += " " + word if current_text else word 
+        #     placeholder.text(current_text)  
+        #     time.sleep(0.035)
 
 col_hide_3, col_4, col_hide_5 = st.columns([0.05,1,0.05])
 
-with col_hide_3:
-    st.markdown('<div class="col_hide_3"></div>', unsafe_allow_html=True)
-
-with col_hide_5:
-    st.markdown('<div class="col_hide_5"></div>', unsafe_allow_html=True)
+col_hide_3.markdown('<div class="col_hide_3"></div>', unsafe_allow_html=True)
+col_hide_5.markdown('<div class="col_hide_5"></div>', unsafe_allow_html=True)
 
 with col_4:
     with st.container():
