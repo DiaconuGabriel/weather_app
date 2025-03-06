@@ -18,6 +18,7 @@
 }
 
 [class^="forecast_"]{
+    display: flex;
     font-size: 45px;
     justify-content: center;
     text-align: center;
@@ -32,15 +33,6 @@
 [data-testid="stTextInput"] > div{
     border: 1px solid rgba(255, 254, 254, 0.647);
     border-radius: 10px;
-}
-
-[data-testid="stColumn"]:is(
-    :has([data-testid="stMarkdownContainer"] .col_hide_1),
-    :has([data-testid="stMarkdownContainer"] .col_hide_2),
-    :has([data-testid="stMarkdownContainer"] .col_hide_3),
-) {
-    border-color: rgba(255, 254, 254, 0);
-    background-color: rgba(55, 55, 55, 0);
 }
 
 [data-testid="stColumn"]:is(
@@ -63,7 +55,7 @@
     :has([data-testid="stMarkdownContainer"] .pm25_col),
     :has([data-testid="stMarkdownContainer"] .aqi_col),
     :has([data-testid="stMarkdownContainer"] [class^="forecast_"]),
-) {
+) { 
     padding: 27px;
     background-color: rgba(55, 55, 55, 0.14);
     border-radius: 45px;
@@ -71,9 +63,11 @@
     color: rgb(255, 255, 255);
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(25px);
-    text-align: center
+    text-align: center;
+    align-items: center
 }
 
 [data-testid="stMarkdownContainer"] {
-    font-size:19px; 
+    font-size:19px;
+    padding: 0px 0px 10px 0px;
 }

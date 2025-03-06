@@ -49,7 +49,7 @@ def typewriter_effect(text):
         if (index < words.length) {{
             typewriterElement.textContent += words[index] + " ";
             index++;
-            setTimeout(typeNextWord, 35); // Viteza: 200ms între cuvinte
+            setTimeout(typeNextWord, 35); // Viteza de scriere
         }}
     }}
 
@@ -57,7 +57,6 @@ def typewriter_effect(text):
     </script>
     """
     return html_code
-
 
 def modify_data(weather, air_quality_data, forecast):
     global temperatura, temperatura_min, temperatura_max, vreme, umidiate, vit_vant, sunrise, sunset, se_simte, nori, presiune
@@ -105,7 +104,7 @@ fundal.set_png_as_page_bg("images/image.png")
 
 with st.container():
     st.markdown('<div class="title">🌥️ Weather & Air Quality App</div>', unsafe_allow_html=True)
-    col_hide_1, col_data, col_air_q, col_hide_2= st.columns([0.1,1,1,0.1], border=True)
+    col_hide_1, col_data, col_air_q, col_hide_2= st.columns([0.1,1,1,0.1])
 
 col_hide_1.markdown('<div class="col_hide_1"></div>', unsafe_allow_html=True)
 col_hide_2.markdown('<div class="col_hide_2"></div>', unsafe_allow_html=True)
@@ -113,7 +112,7 @@ col_hide_2.markdown('<div class="col_hide_2"></div>', unsafe_allow_html=True)
 with col_data:
     st.markdown('<div class="col_data"></div>', unsafe_allow_html=True)
     with st.container():
-        col_select_city, col4 = st.columns(2, border=True)
+        col_select_city, col4 = st.columns(2)
         with col_select_city:
             st.markdown('<div class="select_city"></div>', unsafe_allow_html=True)
             with st.container():
@@ -137,7 +136,7 @@ with col_data:
                         modify_data(weather, air_quality_data, forecast)
                         text = ai_response
                         st.session_state.prompt = " "
-                        
+
                 except Exception as e:
                     print(e)
                     oras = "NA"; temperatura = "NA"; temperatura_min = "NA"; temperatura_max = "NA"; vreme = "NA"; umidiate ="NA"; vit_vant = "NA"; sunrise = "NA"; sunset = "NA"; se_simte = "NA"; nori = "NA"; presiune = "NA";
@@ -147,7 +146,7 @@ with col_data:
         col4.markdown('<div class="col4"></div>', unsafe_allow_html=True)
         col4.write('📍' + oras); col4.write('🌡️ ' + temperatura+ " °C"); col4.write('Weather: ' + vreme); col4.write("☀️: "+sunrise); col4.write("🔴: "+sunset)
 
-        col_min_max_temp, col_humidity, col_wind_speed = st.columns(3, border=True)
+        col_min_max_temp, col_humidity, col_wind_speed = st.columns(3)
 
         with col_min_max_temp:
             st.markdown('<div class="col_min_max_temp"></div>', unsafe_allow_html=True)
@@ -159,7 +158,7 @@ with col_data:
             st.markdown('<div class="col_wind_speed"></div>', unsafe_allow_html=True)
             st.write("💨 Wind Speed"); st.write(vit_vant+ " km/h") 
 
-        col_feels_like, col_cloud_coverage, col_pressure = st.columns(3, border=True)
+        col_feels_like, col_cloud_coverage, col_pressure = st.columns(3)
         with col_feels_like:
             st.markdown('<div class="col_feels_like"></div>', unsafe_allow_html=True)
             st.write("🌡️ Feels Like"); st.write(se_simte+ " °C")
@@ -173,21 +172,21 @@ with col_data:
 with col_air_q:
     st.markdown('<div class="col_air_q"></div>', unsafe_allow_html=True)
 
-    co_col, no2_col, o3_col, so2_col = st.columns(4, border=True)
+    co_col, no2_col, o3_col, so2_col = st.columns(4)
     with co_col :
         st.markdown('<div class="co_col"></div>', unsafe_allow_html=True)
         co_col.write("CO"); co_col.write(co + " µg/m³")
     with no2_col:
         st.markdown('<div class="no2_col"></div>', unsafe_allow_html=True)
-        so2_col.write("SO2"); so2_col.write(so2 + " µg/m³")
+        no2_col.write("NO2"); no2_col.write(no2 + " µg/m³")
     with o3_col:
         st.markdown('<div class="o3_col"></div>', unsafe_allow_html=True)
         o3_col.write("O3"); o3_col.write(o3 + " µg/m³")
     with so2_col:
         st.markdown('<div class="so2_col"></div>', unsafe_allow_html=True)
-        no2_col.write("NO2"); no2_col.write(no2 + " µg/m³")
+        so2_col.write("SO2"); so2_col.write(so2 + " µg/m³")
 
-    pm10_col, pm25_col, aqi_col = st.columns(3, border=True)
+    pm10_col, pm25_col, aqi_col = st.columns(3)
     with pm10_col:
         st.markdown('<div class="pm10_col"></div>', unsafe_allow_html=True) 
         pm10_col.write("PM10"); pm10_col.write(pm10 + " µg/m³")
@@ -211,7 +210,7 @@ col_hide_5.markdown('<div class="col_hide_5"></div>', unsafe_allow_html=True)
 with col_4:
     with st.container():
         st.markdown('<div class="temperatures_for_the_day">📈 Temperatures for the day</div>', unsafe_allow_html=True)
-        columns1 = st.columns(12, border=True)
+        columns1 = st.columns(12)
 
         for idx, (weather, temp, time, about) in enumerate(data):
             columns1[idx].markdown(f'<div class="forecast_{idx}">{weather}</div>', unsafe_allow_html=True)
