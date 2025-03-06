@@ -15,8 +15,49 @@ oras = "NA"; temperatura = "NA"; temperatura_min = "NA"; temperatura_max = "NA";
 co = "NA"; no2 = "NA"; o3 ="NA"; pm10 ="NA"; pm25 = "NA"; so2 = "NA"; air_quality_index = "NA"
 data = [("🌥️", "NA", "NA", "NA") for _ in range(12)]
 text = ""
-words = text.split()
-current_text = ""
+
+def typewriter_effect(text):
+    html_code = f"""
+    <style>
+    .text_ai {{
+        border-radius: 20px;
+        padding: 20px; 
+        background-color: rgba(55, 55, 55, 0.14); 
+        border-radius: 15px; 
+        border: 1px solid rgba(255, 254, 254, 0.647); 
+        color: rgb(255, 255, 255); 
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); 
+        backdrop-filter: blur(20px); 
+        font-size: 18px; 
+        font-family: Arial, sans-serif;
+        text-align: left;
+        line-height: 1.55;
+    }}
+    </style>
+
+    <div class="text_ai">
+        <span id="typewriter"></span>
+    </div>
+
+    <script>
+    const text = `{text}`;  // Folosim textul din Python
+    const words = text.split(" ");
+    const typewriterElement = document.getElementById("typewriter");
+    let index = 0;
+
+    function typeNextWord() {{
+        if (index < words.length) {{
+            typewriterElement.textContent += words[index] + " ";
+            index++;
+            setTimeout(typeNextWord, 35); // Viteza: 200ms între cuvinte
+        }}
+    }}
+
+    typeNextWord();
+    </script>
+    """
+    return html_code
+
 
 def modify_data(weather, air_quality_data, forecast):
     global temperatura, temperatura_min, temperatura_max, vreme, umidiate, vit_vant, sunrise, sunset, se_simte, nori, presiune
@@ -79,8 +120,8 @@ with col_data:
                 try:
                     selected_city = st.selectbox("Select city", cities, index=None)
 
-                    placeholder = st.empty()
-                    prompt = placeholder.text_input("Describe yourself",value = st.session_state.prompt)
+                    placeholder1 = st.empty()
+                    prompt = placeholder1.text_input("Describe yourself",value = st.session_state.prompt)
                     if st.button("Show data"):
                         oras = selected_city
                         api_client_location = LocationAPI(st.secrets["location_api_key"])
@@ -95,14 +136,13 @@ with col_data:
                         print(ai_response)
                         modify_data(weather, air_quality_data, forecast)
                         text = ai_response
-                        words = text.split()
                         st.session_state.prompt = " "
+                        
                 except Exception as e:
                     print(e)
                     oras = "NA"; temperatura = "NA"; temperatura_min = "NA"; temperatura_max = "NA"; vreme = "NA"; umidiate ="NA"; vit_vant = "NA"; sunrise = "NA"; sunset = "NA"; se_simte = "NA"; nori = "NA"; presiune = "NA";
                     co = "NA"; no2 = "NA"; o3 ="NA"; pm10 ="NA"; pm25 = "NA"; so2 = "NA"; air_quality_index = "NA"
-                    text = f'{e}'
-                    words = text.split()    
+                    text = f'{e}'  
                 
         col4.markdown('<div class="col4"></div>', unsafe_allow_html=True)
         col4.write('📍' + oras); col4.write('🌡️ ' + temperatura+ " °C"); col4.write('Weather: ' + vreme); col4.write("☀️: "+sunrise); col4.write("🔴: "+sunset)
@@ -161,13 +201,7 @@ with col_air_q:
     with st.container():
         st.markdown('<div class="title_ai">🔍 AI Recommendation:</div>', unsafe_allow_html=True)
     
-    with st.container():
-        st.markdown(f'<div class="text_ai">{text}</div>', unsafe_allow_html=True)
-        # placeholder = st.empty()
-        # for word in words:
-        #     current_text += " " + word if current_text else word 
-        #     placeholder.text(current_text)  
-        #     time.sleep(0.035)
+    components.html(typewriter_effect(text), height=200)
 
 col_hide_3, col_4, col_hide_5 = st.columns([0.05,1,0.05])
 
@@ -181,7 +215,6 @@ with col_4:
 
         for idx, (weather, temp, time, about) in enumerate(data):
             columns1[idx].markdown(f'<div class="forecast_{idx}">{weather}</div>', unsafe_allow_html=True)
-            # columns1[idx].write(f'# {weather}')  
             columns1[idx].write(f'{temp}' + " °C")    
             columns1[idx].write(f'{time.strftime("%H:%M")}' if isinstance(time, Timestamp) else time)
             columns1[idx].write(about)
