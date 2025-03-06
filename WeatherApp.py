@@ -191,7 +191,8 @@ with col_4:
         columns1 = st.columns(12, border=True)
 
         for idx, (weather, temp, time, about) in enumerate(data):
-            columns1[idx].write(f'# {weather}')  
+            columns1[idx].markdown(f'<div class="forecast_{idx}">{weather}</div>', unsafe_allow_html=True)
+            # columns1[idx].write(f'# {weather}')  
             columns1[idx].write(f'{temp}' + " °C")    
             columns1[idx].write(f'{time.strftime("%H:%M")}' if isinstance(time, Timestamp) else time)
             columns1[idx].write(about)
