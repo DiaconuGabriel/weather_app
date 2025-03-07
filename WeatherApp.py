@@ -20,40 +20,46 @@ def typewriter_effect(text):
     html_code = f"""
     <style>
     .text_ai {{
-        border-radius: 20px;
-        padding: 20px; 
+        border-radius: 30px;
+        padding: 15px; 
+        box-sizing: border-box;
         background-color: rgba(55, 55, 55, 0.14); 
-        border-radius: 15px; 
-        border: 1px solid rgba(255, 254, 254, 0.647); 
+        border: 1px solid rgba(255, 254, 254, 0.647);
         color: rgb(255, 255, 255); 
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); 
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(20px); 
-        font-size: 18px; 
+        font-size: 18.5px; 
         font-family: Arial, sans-serif;
         text-align: left;
         line-height: 1.55;
+        width: 99%; 
+        height: 190px; 
+        overflow-y: auto;
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
+        resize: none;
     }}
     </style>
 
-    <div class="text_ai">
-        <span id="typewriter"></span>
-    </div>
+    <textarea class="text_ai" id="typewriter" readonly></textarea>
 
     <script>
-    const text = `{text}`;  // Folosim textul din Python
-    const words = text.split(" ");
+    const text = `{text}`;
     const typewriterElement = document.getElementById("typewriter");
     let index = 0;
 
-    function typeNextWord() {{
-        if (index < words.length) {{
-            typewriterElement.textContent += words[index] + " ";
+    function typeNextCharacter() {{
+        if (index < text.length) {{
+            typewriterElement.value += text[index];
             index++;
-            setTimeout(typeNextWord, 35); // Viteza de scriere
+
+            typewriterElement.scrollTop = typewriterElement.scrollHeight;
+
+            setTimeout(typeNextCharacter, 20);
         }}
     }}
 
-    typeNextWord();
+    typeNextCharacter();
     </script>
     """
     return html_code

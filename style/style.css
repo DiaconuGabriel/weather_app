@@ -8,7 +8,7 @@
 .title_ai{
     font-size: 33px;
     text-align: left;
-    padding: 0px 10px 10px;
+    padding: 5px 10px 0px;
 }
 
 .temperatures_for_the_day{
@@ -18,21 +18,22 @@
 }
 
 [class^="forecast_"]{
-    display: flex;
+    display: inline-block;
     font-size: 45px;
     justify-content: center;
     text-align: center;
-    padding: 0px 0px 17px 0px; 
+    padding: 0px 0px 17px 0px;
+    
 }
 
 [data-testid="stSelectbox"] > div{
     border: 1px solid rgba(255, 254, 254, 0.647);
-    border-radius: 10px;
+    border-radius: 9px;
 }
 
 [data-testid="stTextInput"] > div{
     border: 1px solid rgba(255, 254, 254, 0.647);
-    border-radius: 10px;
+    border-radius: 9px;
 }
 
 [data-testid="stColumn"]:is(
@@ -64,7 +65,7 @@
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(25px);
     text-align: center;
-    align-items: center
+    align-items: center;
 }
 
 [data-testid="stMarkdownContainer"] {
