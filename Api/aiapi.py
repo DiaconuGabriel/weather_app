@@ -21,7 +21,6 @@ class AIAPI:
             response.raise_for_status()
             data = response.json()
             print(response.status_code)
-            # print(data)
 
             return data['candidates'][0]['content']['parts'][0]['text']
             

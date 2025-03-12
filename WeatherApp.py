@@ -137,7 +137,7 @@ with col_data:
                         air_quality = AirQualityAPI(st.secrets["air_quality_api_key"])
                         air_quality_data = air_quality.get_air_quality(location['latitude'],location['longitude'])
                         ai = AIAPI(st.secrets["ai_api_key"])
-                        ai_response = ai.get_ai_advice(prompt,weather,air_quality_data)
+                        ai_response = ai.get_ai_advice(prompt,forecast,air_quality_data)
                         print(ai_response)
                         modify_data(weather, air_quality_data, forecast)
                         text = ai_response
