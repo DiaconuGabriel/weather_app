@@ -1,5 +1,6 @@
 import pandas as pd
 import openmeteo_requests
+import pytz
 import requests
 from datetime import datetime
 
@@ -17,13 +18,13 @@ class WeatherAPI:
             response.raise_for_status()
           
             data = response.json()
-            
+            tz = pytz.timezone('Europe/Bucharest')
             weather_info = {
                 "city": data["name"],
                 "temperature": f'{data["main"]["temp"]}',
                 "weather": f'{data["weather"][0]["description"]}',
-                "sunrise": f'{datetime.fromtimestamp(data["sys"]["sunrise"], tz = "Europe/Bucharest").strftime("%H:%M")}',
-                "sunset": f'{datetime.fromtimestamp(data["sys"]["sunset"], tz = "Europe/Bucharest").strftime("%H:%M")}',
+                "sunrise": f'{datetime.fromtimestamp(data["sys"]["sunrise"], tz).strftime("%H:%M")}',
+                "sunset": f'{datetime.fromtimestamp(data["sys"]["sunset"], tz).strftime("%H:%M")}',
                 "temperature_min": f'{data["main"]["temp_min"]}',
                 "temperature_max": f'{data["main"]["temp_max"]}',
                 "humidity": f'{data["main"]["humidity"]}',
