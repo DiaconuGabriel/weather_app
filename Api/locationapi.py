@@ -25,7 +25,7 @@ class LocationAPI:
             locations = {"latitude": data["results"][0]["lat"], "longitude":data["results"][0]["lon"]} 
             return locations
         except requests.exceptions.HTTPError as http_err:
-            raise Exception("Ai failed to responde")
+            raise Exception("Failed to get coordinates!")
         except Exception as err:
             print(f"Other error occurred: {err}")
 
